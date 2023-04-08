@@ -21,18 +21,17 @@
             cont++;
             const numero = Math.floor(Math.random() * 100) + 1;
             const potencia = Math.pow(numero, 2);
-            document.write(`<p>Raíz cuadrada de ${potencia}: ${Math.sqrt(potencia)}</p>`);
+
             const antes = obtenerTiempoActual();
-            const respuesta = parseInt(prompt("¿Cuál es el número?"));
+            const respuesta = parseInt(prompt(`¿raiz cuadrada de ${(potencia)}?`));
+
             const fin = obtenerTiempoActual() - antes;
             total += fin;
             const promedio = total / cont;
 
-            document.write(respuesta === numero ?
-                `<p>¡Bien! Te demoraste ${redondear(fin / 1000)} segundos en responder.</p>` :
-                `<p>¡Mal! El número era ${numero}. Te demoraste ${redondear(fin / 1000)} segundos en responder.</p>`);
-
-            document.write(`<p>Promedio: ${redondear(promedio / 1000)} segundos</p>`);
+            window.alert(respuesta === numero ?
+                `¡Bien! Te demoraste ${redondear(fin / 1000)} segundos en responder. Promedio es ${(promedio / 1000).toFixed(1)}.` :
+                `¡Mal! El número era ${numero}. Te demoraste ${redondear(fin / 1000)} segundos en responder.  Promedio es ${(promedio / 1000).toFixed(1)}.`);
         }
     </script>
 </body>
