@@ -48,12 +48,7 @@
             let userAnswer = document.getElementById("userAnswer").value;
             let texto;
 
-            if (isNaN(userAnswer)) {
-                texto = "Por favor ingrese un número";
-            } else
-            if (userAnswer < 1 || userAnswer > 100) {
-                texto = "El número debe estar entre 1 y 100. ";
-            } else if (userAnswer == base) {
+            if (userAnswer == base) {
                 texto = `¡Correcto! La raíz de ${power} es ${base}.`;
             } else {
                 texto = `Incorrecto. La raíz de ${power} es ${base}.`;
