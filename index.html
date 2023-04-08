@@ -31,7 +31,7 @@
     <p>Raíz de: <span id="power"></span></p>
     <input type="number" id="userAnswer" onkeyup="handleKeyUp(event)">
     <button onclick="checkAnswer()">Enviar</button>
-    <div id="result"></div>
+
 
     <script>
         function newGame() {
@@ -39,8 +39,6 @@
             power = base ** 2;
             document.getElementById("power").textContent = power;
             document.getElementById("userAnswer").value = "";
-            document.getElementById("result").textContent = "";
-            document.getElementById("newGameButton").style.display = "none";
             document.getElementById("userAnswer").focus();
         }
 
