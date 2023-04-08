@@ -1,38 +1,66 @@
-<html>
+<!-- <html>
 
 <head>
     <title>Mi web con JavaScript</title>
 </head>
 
 <body>
+
     <script>
-        function obtenerTiempoActual() {
-            return Date.now();
-        }
-
-        function redondear(num) {
-            return Math.floor(num);
-        }
-
-        let total = 0;
-        let cont = 0;
-
         while (true) {
-            cont++;
-            const numero = Math.floor(Math.random() * 100) + 1;
-            const potencia = Math.pow(numero, 2);
+            let base = Math.floor(Math.random() * 100) + 1;
+            let power = base ** 2;
 
-            const antes = obtenerTiempoActual();
-            const respuesta = parseInt(prompt(`¿raiz cuadrada de ${(potencia)}?`));
-
-            const fin = obtenerTiempoActual() - antes;
-            total += fin;
-            const promedio = total / cont;
-
-            window.alert(respuesta === numero ?
-                `¡Bien! Te demoraste ${redondear(fin / 1000)} segundos en responder. Promedio es ${(promedio / 1000).toFixed(1)}.` :
-                `¡Mal! El número era ${numero}. Te demoraste ${redondear(fin / 1000)} segundos en responder.  Promedio es ${(promedio / 1000).toFixed(1)}.`);
+            let userAnswer = prompt(`¿Cuál es la raíz de ${power}?`);
+            alert(userAnswer == base ? `¡Correcto! La raíz de ${power} es ${base}.` : `Incorrecto. La raíz de ${power} es ${base}.`);
         }
+    </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Juego de raíz cuadrada</title>
+</head>
+
+<body>
+    <h1>Juego de raíz cuadrada</h1>
+    <p>¿Cuál es la raíz de <span id="power"></span>?</p>
+    <input type="number" id="userAnswer">
+    <button onclick="checkAnswer()">Enviar</button>
+    <div id="result"></div>
+    <button onclick="newGame()" id="newGameButton" style="display: none;">Jugar de nuevo</button>
+
+    <script>
+        function checkAnswer() {
+            let userAnswer = document.getElementById("userAnswer").value;
+            if (isNaN(userAnswer)) {
+                document.getElementById("result").textContent = "Por favor ingrese un número.";
+            } else if (userAnswer < 1 || userAnswer > 100) {
+                document.getElementById("result").textContent = "El número debe estar entre 1 y 100.";
+            } else if (userAnswer == base) {
+                document.getElementById("result").textContent = `¡Correcto! La raíz de ${power} es ${base}.`;
+                document.getElementById("newGameButton").style.display = "inline";
+            } else {
+                document.getElementById("result").textContent = `Incorrecto. La raíz de ${power} es ${base}.`;
+                document.getElementById("newGameButton").style.display = "inline";
+            }
+        }
+
+        function newGame() {
+            base = Math.floor(Math.random() * 100) + 1;
+            power = base ** 2;
+            document.getElementById("power").textContent = power;
+            document.getElementById("userAnswer").value = "";
+            document.getElementById("result").textContent = "";
+            document.getElementById("newGameButton").style.display = "none";
+            document.getElementById("userAnswer").focus();
+        }
+
+        newGame()
     </script>
 </body>
 
