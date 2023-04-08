@@ -32,24 +32,8 @@
     <input type="number" id="userAnswer" onkeyup="handleKeyUp(event)">
     <button onclick="checkAnswer()">Enviar</button>
     <div id="result"></div>
-    <button onclick="newGame()" id="newGameButton" style="display: none;">Jugar de nuevo</button>
 
     <script>
-        function checkAnswer() {
-            let userAnswer = document.getElementById("userAnswer").value;
-            if (isNaN(userAnswer)) {
-                document.getElementById("result").textContent = "Por favor ingrese un número.";
-            } else if (userAnswer < 1 || userAnswer > 100) {
-                document.getElementById("result").textContent = "El número debe estar entre 1 y 100.";
-            } else if (userAnswer == base) {
-                document.getElementById("result").textContent = `¡Correcto! La raíz de ${power} es ${base}.`;
-                document.getElementById("newGameButton").style.display = "inline";
-            } else {
-                document.getElementById("result").textContent = `Incorrecto. La raíz de ${power} es ${base}.`;
-                document.getElementById("newGameButton").style.display = "inline";
-            }
-        }
-
         function newGame() {
             base = Math.floor(Math.random() * 100) + 1;
             power = base ** 2;
@@ -59,6 +43,26 @@
             document.getElementById("newGameButton").style.display = "none";
             document.getElementById("userAnswer").focus();
         }
+
+        function checkAnswer() {
+            let userAnswer = document.getElementById("userAnswer").value;
+            let texto;
+
+            if (isNaN(userAnswer)) {
+                texto = "Por favor ingrese un número";
+            } else
+            if (userAnswer < 1 || userAnswer > 100) {
+                texto = "El número debe estar entre 1 y 100. ";
+            } else if (userAnswer == base) {
+                texto = `¡Correcto! La raíz de ${power} es ${base}.`;
+            } else {
+                texto = `Incorrecto. La raíz de ${power} es ${base}.`;
+            }
+
+            alert(texto)
+            newGame()
+        }
+
 
         function handleKeyUp(event) {
             if (event.key === "Enter") {
