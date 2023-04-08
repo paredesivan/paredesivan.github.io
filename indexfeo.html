@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Adivina el número</title>
+    <style>
+        /* Estilos CSS para los elementos de la página */
+        
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        input[type="number"] {
+            font-size: 16px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        
+        button {
+            font-size: 16px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <label id="label_raiz"></label>
+        <input type="number" id="input_numero" autofocus>
+        <button id="button_aceptar">Aceptar</button>
+        <br>
+        <label id="label_respuesta"></label>
+        <label id="label_promedio"></label>
+        <label id="label_aciertos"></label>
+    </div>
+    <script>
+        // Código JavaScript
+        let numero, total, cont, antes, aciertos;
+        const label_raiz = document.getElementById("label_raiz");
+        const input_numero = document.getElementById("input_numero");
+        const button_aceptar = document.getElementById("button_aceptar");
+        const label_respuesta = document.getElementById("label_respuesta");
+        const label_promedio = document.getElementById("label_promedio");
+        const label_aciertos = document.getElementById("label_aciertos");
+
+        function adivinar() {
+            const respuesta = parseInt(input_numero.value);
+            if (isNaN(respuesta)) {
+                label_respuesta.innerText = "Por favor ingresa un número válido";
+                return;
+            }
+            cont += 1;
+            const fin = Date.now() - antes;
+            total += fin;
+            const promedio = total / cont;
+            if (respuesta === numero) {
+                label_respuesta.innerText = `Bieeen! Te demoraste ${Math.floor(fin/1000)} segundos en responder.`;
+                aciertos += 1;
+            } else {
+                label_respuesta.innerText = `Maaaal! El numero era ${numero}. Te demoraste ${Math.floor(fin/1000)} segundos en responder.`;
+            }
+            label_promedio.innerText = `Promedio: ${Math.floor(promedio/1000)} segundos`;
+            label_aciertos.innerText = `Aciertos: ${aciertos} de ${cont}`;
+            numero = Math.floor(Math.random() * 100) + 1;
+            const potencia = Math.pow(numero, 2);
+            label_raiz.innerText = `Raiz de: ${potencia}`;
+            input_numero.value = "";
+            antes = Date.now();
+        }
+
+        // Inicialización de variables y elementos
+        total = 0;
+        cont = 0;
+        aciertos = 0;
+        numero = Math.floor(Math.random() * 100) + 1;
+        const potencia = Math.pow(numero, 2);
+        label_raiz.innerText = `Raiz de: ${potencia}`;
+        antes = Date.now();
+        input_numero.addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                adivinar();
+            }
+        });
+    </script>
+</body>
+
+</html>
